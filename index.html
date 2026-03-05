@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY TWEENTEEN UTSAV 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Landing Page -->
+    <section id="landing" class="full-screen">
+        <div class="balloon-container"></div>
+        <div class="hero-content">
+            <h1 class="title">HAPPY TWEENTEEN <span class="utsav-name">UTSAV</span> 🎉</h1>
+            <p class="subtitle">Still no maturity update available</p>
+            <button id="enter-btn" class="glass-btn">Enter the Party</button>
+        </div>
+    </section>
+
+    <!-- Main Content (Hidden initially) -->
+    <main id="main-content" class="hidden">
+
+        <!-- Photo Timeline -->
+        <section id="timeline-section" class="section">
+            <h2 class="section-title">The Evolution of Utsav</h2>
+            <div class="timeline-container">
+                <div class="timeline-track">
+                    <div class="timeline-item reveal">
+                        <img src="assets/childhood/WhatsApp Image 2026-03-05 at 7.16.58 PM.jpeg" alt="Childhood Utsav">
+                        <div class="caption">"Prajaktha & Raghuveer's pet kid"</div>
+                        <div class="year">Childhood</div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <img src="assets/school/SCHOOL.jpeg" alt="School Utsav">
+                        <div class="caption">"Maturity loading.... but NP lets go with the flow"</div>
+                        <div class="year">School Days</div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <img src="assets/present/secret.png" alt="Present Utsav">
+                        <div class="caption">"System update: 20 Yrs & Still Buffering..."</div>
+                        <div class="year">Present</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Many Faces of Utsav -->
+        <section id="roast-section" class="section">
+            <h2 class="section-title">The Many Faces of Utsav</h2>
+            <div class="roast-grid">
+                <!-- Gym Paglu -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 1.00.39 PM.jpeg" alt="Gym Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag gym">🏋️ Gym Paglu</span>
+                        <p>Gym bag always ready but<span class="highlight-text"> Assignment bag never found.</span></p>
+                    </div>
+                </div>
+
+                <!-- Photoholic -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 1.00.11 PM.jpeg" alt="Photoholic Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag photo">📸 Photoholic</span>
+                        <p>Every moment is a photoshoot. <span class="highlight-text">Phone storage: 90% Utsav
+                                photos.</span></p>
+                    </div>
+                </div>
+
+                <!-- Hostel Chef -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/image.png" alt="Chef Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag chef">🍳 Hostel Chef</span>
+                        <p>When the mess food fails… <span class="highlight-text">Chef Utsav saves the hostel.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bartender -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 12.56.57 PM.jpeg" alt="Bartender Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag drink">🍹 Bartender</span>
+                        <p>Mixes drinks like a professional. <span class="highlight-text">Sometimes the drinks mix him
+                                instead.</span></p>
+                    </div>
+                </div>
+
+                <!-- Caretaker -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 12.57.39 PM.jpeg" alt="Caretaker Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag care">🚑 Caretaker</span>
+                        <p>Thank you Utsav for taking care of everyone in sagaraaa group. <span
+                                class="highlight-text">Your
+                                great works will never be forgotten.</span></p>
+                    </div>
+                </div>
+
+                <!-- Mr. Pearl -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/mr.pearl.jpeg" alt="Mr Pearl">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag pearl">💎 Mr. Pearl</span>
+                        <p>Official master of <span class="highlight-text">Ms. Pearl</span></p>
+                    </div>
+                </div>
+
+                <!-- Egg Lover -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 7.32.03 PM (1).jpeg" alt="Egg Lover">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag egg">🍳 Egg Lover</span>
+                        <p>Man who loves <span class="highlight-text">unfertilized eggs</span> more than life itself.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Anime Lover -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/animelover.jpeg" alt="Anime Utsav">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag anime">🎌 Anime Lover</span>
+                        <p>If anime was a degree… <span class="highlight-text">Utsav would be a professor.</span></p>
+                    </div>
+                </div>
+
+                <!-- Searching for Girls -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/WhatsApp Image 2026-03-05 at 1.01.40 PM.jpeg" alt="Searching">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag girls">📩 Searching...</span>
+                        <p>Still searching… Applications open in DM. <span class="highlight-text">otherwise might turn
+                                GAY</span></p>
+                    </div>
+                </div>
+
+                <!-- Chaos Master -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/childhood/WhatsApp Image 2026-03-05 at 7.17.05 PM.jpeg" alt="Chaos">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag chaos">🤪 Chaos Master</span>
+                        <p>Certified <span class="highlight-text">chaos generator</span> since childhood.</p>
+                    </div>
+                </div>
+
+                <!-- Wrong Direction Consultant -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/school/WhatsApp Image 2026-03-05 at 7.43.44 PM.jpeg" alt="Direction Guide">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag direction">🧭 Direction Guide</span>
+                        <p><span class="highlight-text">Official Wrong Direction Consultant.</span><br>
+                            Guaranteed to take you everywhere except the destination.</p>
+                    </div>
+                </div>
+
+                <!-- Philosopher -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/school/WhatsApp Image 2026-03-05 at 12.57.19 PM.jpeg" alt="Philosopher">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag philos">🧠 Philosopher</span>
+                        <p><span class="highlight-text">TALKS Like pro.</span> Life's greatest mystery solved in 5 mins.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Teacher -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/present/Screenshot 2025-06-12 013035.png" alt="Teacher">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag teach">📚 Teacher</span>
+                        <p>Gives life advice like a professor but still <span class="highlight-text">figuring out his
+                                own shitt..
+                            </span> STRESS BURSTER.</p>
+                    </div>
+                </div>
+
+                <!-- Desi Bhatta -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/childhood/WhatsApp Image 2026-03-05 at 7.16.58 PM (1).jpeg" alt="Desi">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag desi">🇮🇳 Coffee Paglu</span>
+                        <p><span class="highlight-text">Blood is red? Wrong.</span><br>
+                            His blood type is sugarless black coffee ☕</p>
+                    </div>
+                </div>
+
+                <!-- Pure Brahmin -->
+                <div class="roast-card reveal">
+                    <div class="card-img-container">
+                        <img src="assets/childhood/WhatsApp Image 2026-03-05 at 7.16.58 PM.jpeg" alt="Brahmin">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag brahmin">🕉 Pure Brahmin</span>
+                        <p>namma MANCHALE <span class="highlight-text">Huduga</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Birthday Messages -->
+        <section id="messages-section" class="section">
+            <h2 class="section-title">Wall of Fame (or Shame)</h2>
+            <div id="wishes-display" class="wishes-grid">
+                <!-- Live wishes will be injected here -->
+                <div class="wish-card">
+                    <p>"20 years and still buffering maturity" - Group Chat</p>
+                </div>
+                <div class="wish-card">
+                    <p>"System update: Age +1, wisdom still downloading" - IT Dept</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wish Utsav Form -->
+        <section id="form-section" class="section">
+            <div class="thank-you-pre-form reveal">
+                <img src="assets/present/thanku.jpeg" alt="Utsav" class="thank-you-img">
+                <p class="highlight-quote">Nam mansu, namge olledu madidre devru</p>
+            </div>
+
+            <div class="form-container glass-panel reveal">
+                <h2 class="section-title">Send Utsav some Love!</h2>
+                <form id="wish-form">
+                    <input type="text" id="user-name" placeholder="Your Name" required>
+                    <textarea id="user-message" placeholder="Your Message (Roasts allowed)" required></textarea>
+                    <button type="submit" class="submit-btn">Send Wish 🚀</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Final Thank You & Credits -->
+        <footer class="final-credits reveal active">
+            <h2 id="final-thank-you-msg" class="thank-you-text hidden">THANK U GUYSS!</h2>
+            <div class="credits-box">
+                <p>Made with lots of love from</p>
+                <div class="names-row">
+                    <span>DON BHAII</span> • <span>MS. DWARF</span> • <span>BHAKRI BHAI</span>
+                </div>
+                <p class="family-tag">and Sagaraa Family ❤️</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Popup for Birthday -->
+    <div id="bday-popup" class="popup hidden">
+        <div class="popup-content glass-panel">
+            <span class="close-popup">&times;</span>
+            <img src="assets/present/anime.jpeg" alt="Happy Birthday Utsav">
+            <h2>Happy Birthday Utsav 🥳</h2>
+            <p>Welcome to the Tweenteens!</p>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="landing-music" loop autoplay preload="auto">
+        <source src="audios/HBD SONG.mpeg" type="audio/mpeg">
+    </audio>
+    <audio id="bday-music" preload="auto">
+        <source src="audios/fah.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
