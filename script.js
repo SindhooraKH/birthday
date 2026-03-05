@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const { data, error } = await _supabase
                 .from('wishes')
                 .select('*')
-                .order('created_at', { ascending: false });
+                .order('id', { ascending: false });
 
             if (error) throw error;
 
