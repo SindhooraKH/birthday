@@ -236,19 +236,6 @@
             </div>
         </section>
 
-        <!-- Birthday Messages -->
-        <section id="messages-section" class="section">
-            <h2 class="section-title">Wall of Fame (or Shame)</h2>
-            <div id="wishes-display" class="wishes-grid">
-                <!-- Live wishes will be injected here -->
-                <div class="wish-card">
-                    <p>"20 years and still buffering maturity" - Group Chat</p>
-                </div>
-                <div class="wish-card">
-                    <p>"System update: Age +1, wisdom still downloading" - IT Dept</p>
-                </div>
-            </div>
-        </section>
 
         <!-- Wish Utsav Form -->
         <section id="form-section" class="section">
@@ -259,24 +246,24 @@
 
             <div class="form-container glass-panel reveal">
                 <h2 class="section-title">Send Utsav some Love!</h2>
-                <form id="wish-form">
-                    <input type="text" id="user-name" placeholder="Your Name" required>
-                    <textarea id="user-message" placeholder="Your Message (Roasts allowed)" required></textarea>
-                    <button type="submit" class="submit-btn">Send Wish 🚀</button>
+                <form id="wish-form" action="https://formsubmit.co/isha22223110@gmail.com" method="POST">
+                    <input type="text" name="name" id="user-name" placeholder="Your Name" required>
+                    <textarea name="message" id="user-message" placeholder="Your Message (Roasts allowed)"
+                        required></textarea>
+                    <input type="hidden" name="_next" value="https://utsav-bday.netlify.app">
+                    <button type="submit" class="submit-btn" id="submit-btn">Send Wish 🚀</button>
                 </form>
             </div>
         </section>
 
         <!-- Final Thank You & Credits -->
         <footer class="final-credits reveal active">
-            <h2 id="final-thank-you-msg" class="thank-you-text hidden">THANK U GUYSS!</h2>
+            <h2 id="final-thank-you-msg" class="thank-you-text">THANK U GUYSS!</h2>
             <div class="credits-box">
                 <p>Made with lots of love from</p>
                 <div class="names-row">
-                    <span>DON BHAII</span> • <span>MS. DWARF</span> • <span>BHAKRI BHAI</span>
+                    <p class="family-tag">Sagaraa Family ❤️</p>
                 </div>
-                <p class="family-tag">and Sagaraa Family ❤️</p>
-            </div>
         </footer>
 
     </main>

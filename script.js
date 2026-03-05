@@ -1,22 +1,3 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyASr_7Lbxn0VhR9Qw0g6-FY8fE1av1CpsM",
-    authDomain: "utsav20-34641.firebaseapp.com",
-    projectId: "utsav20-34641",
-    storageBucket: "utsav20-34641.firebasestorage.app",
-    messagingSenderId: "905987200650",
-    appId: "1:905987200650:web:96b3f83abfb3db44a83f73",
-    measurementId: "G-ZLZCDV39YM"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
 document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const landing = document.getElementById('landing');
@@ -26,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bdayMusic = document.getElementById('bday-music');
     const landingMusic = document.getElementById('landing-music');
     const wishForm = document.getElementById('wish-form');
-    const wishesDisplay = document.getElementById('wishes-display');
+    const finalMsg = document.getElementById('final-thank-you-msg');
 
     // Create Balloons
     const balloonContainer = document.querySelector('.balloon-container');
@@ -87,16 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
         bdayPopup.classList.remove('hidden');
 
         // Play birthday wish music
-        bdayMusic.play().catch(e => console.log("Audio playback blocked: " + e));
+        if (bdayMusic) {
+            bdayMusic.play().catch(e => console.log("Audio playback blocked: " + e));
+        }
 
         // Trigger reveal animations
         revealOnScroll();
     });
 
     // Close Popup
-    closePopup.addEventListener('click', () => {
-        bdayPopup.classList.add('hidden');
-    });
+    if (closePopup) {
+        closePopup.addEventListener('click', () => {
+            bdayPopup.classList.add('hidden');
+        });
+    }
 
     // Scroll Reveal Logic
     function revealOnScroll() {
@@ -114,54 +99,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', revealOnScroll);
 
-    // Live Wishes Listener
-    const q = query(collection(db, "wishes"), orderBy("timestamp", "desc"));
-    onSnapshot(q, (snapshot) => {
-        wishesDisplay.innerHTML = '';
-        snapshot.forEach((doc) => {
-            const wish = doc.data();
-            const card = document.createElement('div');
-            card.className = 'wish-card reveal active';
-            card.innerHTML = `<p>"${wish.message}" - ${wish.name}</p>`;
-            wishesDisplay.appendChild(card);
+    // Handle Form Submission via AJAX (FormSubmit.co)
+    if (wishForm) {
+        wishForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    wishForm.reset();
+                    submitBtn.textContent = 'Sent! ✅';
+
+                    // Show THANK U message and scroll to it
+                    if (finalMsg) {
+                        finalMsg.classList.remove('hidden');
+                        setTimeout(() => {
+                            finalMsg.scrollIntoView({ behavior: 'smooth' });
+                            // Final confetti burst
+                            confetti({
+                                particleCount: 100,
+                                spread: 100,
+                                origin: { y: 0.9 }
+                            });
+                        }, 500);
+                    }
+                } else {
+                    alert('Oops! There was a problem. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Wish 🚀';
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Oops! Something went wrong.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Wish 🚀';
+            });
         });
-    });
-
-    // Handle Form Submission
-    wishForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById('user-name');
-        const messageInput = document.getElementById('user-message');
-        const name = nameInput.value;
-        const message = messageInput.value;
-
-        try {
-            await addDoc(collection(db, "wishes"), {
-                name: name,
-                message: message,
-                timestamp: serverTimestamp()
-            });
-
-            wishForm.reset();
-
-            // Show THANK U text below button
-            const finalMsg = document.getElementById('final-thank-you-msg');
-            if (finalMsg) {
-                finalMsg.classList.remove('hidden');
-                finalMsg.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            alert("Wish sent to Utsav!");
-
-            // Throw some confetti on wish
-            confetti({
-                particleCount: 50,
-                spread: 50,
-                origin: { y: 0.8 }
-            });
-        } catch (err) {
-            console.error("Error adding wish: ", err);
-            alert("Oops! Something went wrong. Check the console for details.");
-        }
-    });
+    }
 });
