@@ -1,3 +1,8 @@
+// Supabase Configuration
+const SUPABASE_URL = 'https://fpjwkxwittescntrbrkl.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwandreHdpdHRlc2NudHJicmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MjYzMDIsImV4cCI6MjA4ODMwMjMwMn0.IL6coWsngLBNzKMIvdjs1agLJ4RjeBLV2OflJW1KYVs';
+const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const landing = document.getElementById('landing');
@@ -99,52 +104,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', revealOnScroll);
 
-    // Handle Form Submission via AJAX (FormSubmit.co)
+    // Load and Display Wishes from Supabase
+    const loadWishes = async () => {
+        const wall = document.getElementById('wish-wall');
+        if (!wall) return;
+
+        try {
+            const { data, error } = await _supabase
+                .from('wishes')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            wall.innerHTML = '';
+            data.forEach(wish => {
+                const card = document.createElement('div');
+                card.className = 'wish-card reveal active';
+                card.innerHTML = `<p>"${wish.message}" - ${wish.name}</p>`;
+                wall.appendChild(card);
+            });
+        } catch (err) {
+            console.error('Error loading wishes:', err);
+        }
+    };
+
+    // Initial Load
+    loadWishes();
+
+    // Real-time listener for new wishes
+    _supabase
+        .channel('public:wishes')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'wishes' }, (payload) => {
+            const wall = document.getElementById('wish-wall');
+            if (!wall) return;
+
+            const wish = payload.new;
+            const card = document.createElement('div');
+            card.className = 'wish-card reveal active';
+            card.innerHTML = `<p>"${wish.message}" - ${wish.name}</p>`;
+            wall.prepend(card); // Add to the top
+
+            // Trigger confetti for real-time updates!
+            confetti({
+                particleCount: 30,
+                spread: 30,
+                origin: { y: 0.9 }
+            });
+        })
+        .subscribe();
+
+    // Handle Form Submission with Supabase
     if (wishForm) {
-        wishForm.addEventListener('submit', function (e) {
+        wishForm.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                alert('Please provide your Supabase URL and Anon Key in script.js!');
+                return;
+            }
 
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
 
-            const formData = new FormData(this);
+            const name = document.getElementById('user-name').value;
+            const message = document.getElementById('user-message').value;
 
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    wishForm.reset();
-                    submitBtn.textContent = 'Sent! ✅';
+            try {
+                const { error } = await _supabase
+                    .from('wishes')
+                    .insert([{ name, message }]);
 
-                    // Show THANK U message and scroll to it
-                    if (finalMsg) {
-                        finalMsg.classList.remove('hidden');
-                        setTimeout(() => {
-                            finalMsg.scrollIntoView({ behavior: 'smooth' });
-                            // Final confetti burst
-                            confetti({
-                                particleCount: 100,
-                                spread: 100,
-                                origin: { y: 0.9 }
-                            });
-                        }, 500);
-                    }
-                } else {
-                    alert('Oops! There was a problem. Please try again.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Wish 🚀';
+                if (error) throw error;
+
+                wishForm.reset();
+                submitBtn.textContent = 'Sent! ✅';
+
+                // Confetti burst
+                confetti({
+                    particleCount: 100,
+                    spread: 100,
+                    origin: { y: 0.8 }
+                });
+
+                // Show THANK U message and scroll to it
+                if (finalMsg) {
+                    finalMsg.classList.remove('hidden');
+                    finalMsg.scrollIntoView({ behavior: 'smooth' });
                 }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Oops! Something went wrong.');
+
+                // Reload wishes to be sure
+                loadWishes();
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Oops! There was a problem saving your wish.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send Wish 🚀';
-            });
+            }
         });
     }
 });

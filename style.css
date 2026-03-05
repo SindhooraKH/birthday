@@ -526,3 +526,59 @@ textarea {
         padding: 3rem 1rem;
     }
 }
+
+/* Final Credits & THANK U Styling */
+.final-credits {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #f7fff7 0%, #ffe66d33 100%);
+    text-align: center;
+    border-top: 3px dashed var(--secondary);
+    margin-top: 5rem;
+}
+
+.thank-you-text {
+    font-size: 4rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-family: 'Fredoka', cursive;
+    margin-bottom: 2rem;
+    text-shadow: 3px 3px 0px var(--accent);
+    display: block !important;
+}
+
+.credits-box {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 40px;
+    display: inline-block;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--glass-border);
+    max-width: 90%;
+}
+
+.credits-box p {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.names-row {
+    font-family: 'Fredoka', cursive;
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.names-row .family-tag {
+    background: var(--light);
+    padding: 0.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    color: var(--primary) !important;
+    font-weight: 700;
+    font-size: 1.8rem !important;
+}

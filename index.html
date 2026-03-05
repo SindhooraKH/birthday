@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -237,6 +238,14 @@
         </section>
 
 
+        <!-- Birthday Messages -->
+        <section id="messages-section" class="section">
+            <h2 class="section-title">Wall of Fame (or Shame)</h2>
+            <div id="wish-wall" class="wishes-grid">
+                <!-- Live wishes will be injected here via Supabase -->
+            </div>
+        </section>
+
         <!-- Wish Utsav Form -->
         <section id="form-section" class="section">
             <div class="thank-you-pre-form reveal">
@@ -246,11 +255,9 @@
 
             <div class="form-container glass-panel reveal">
                 <h2 class="section-title">Send Utsav some Love!</h2>
-                <form id="wish-form" action="https://formsubmit.co/isha22223110@gmail.com" method="POST">
-                    <input type="text" name="name" id="user-name" placeholder="Your Name" required>
-                    <textarea name="message" id="user-message" placeholder="Your Message (Roasts allowed)"
-                        required></textarea>
-                    <input type="hidden" name="_next" value="https://utsav-bday.netlify.app">
+                <form id="wish-form">
+                    <input type="text" id="user-name" placeholder="Your Name" required>
+                    <textarea id="user-message" placeholder="Your Message (Roasts allowed)" required></textarea>
                     <button type="submit" class="submit-btn" id="submit-btn">Send Wish 🚀</button>
                 </form>
             </div>
@@ -264,6 +271,7 @@
                 <div class="names-row">
                     <p class="family-tag">Sagaraa Family ❤️</p>
                 </div>
+            </div>
         </footer>
 
     </main>
